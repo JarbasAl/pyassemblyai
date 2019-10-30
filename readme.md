@@ -18,7 +18,12 @@ transcript = engine.stream_file(filepath)  # Paid
 print(transcript)
 
 transcript = engine.transcribe_file(filepath) # text string
-transcript_data = engine.transcribe_file(filepath, raw=True) # json
+
+# you can also send wav data directly, i.e. from microphone
+with open(filepath, "rb") as f:
+    data = f.read()
+transcript_data = engine.transcribe_audiodata(data, raw=True) # json
+
 
 # the semi automatic way
 url = engine.upload_file(filepath) # string
