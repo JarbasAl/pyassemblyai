@@ -1,5 +1,6 @@
 import requests
 import base64
+from time import sleep
 
 
 class AssemblyAI:
@@ -7,8 +8,9 @@ class AssemblyAI:
     transcribe_api_url = "https://api.assemblyai.com/v2/transcript"
     upload_api_url = 'https://api.assemblyai.com/v2/upload'
 
-    def __init__(self, api_token):
+    def __init__(self, api_token, wait_time=1):
         self.token = api_token
+        self.wait_time = wait_time
 
     @staticmethod
     def read_file(filename, chunk_size=5242880):
@@ -78,6 +80,7 @@ class AssemblyAI:
         if raw:
             transcript = self.get_transcript(transcript_id["id"], raw=True)
             while transcript["status"] != "completed":
+                sleep(self.wait_time)
                 transcript = self.get_transcript(transcript_id, raw=True)
             return transcript
         return self.get_transcript(transcript_id)
@@ -90,6 +93,7 @@ class AssemblyAI:
             if transcript.get("error"):
                 return transcript["error"]
             while transcript["status"] != "completed":
+                sleep(self.wait_time)
                 transcript = self.get_transcript(transcript_id, raw=True)
             return transcript
         return self.get_transcript(transcript_id)

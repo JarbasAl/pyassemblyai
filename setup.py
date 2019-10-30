@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pyassemblyai',
-    version='0.2.0',
+    version='0.2.1',
     packages=['pyassemblyai'],
     url='https://github.com/JarbasAl/pyassemblyai',
     license='MIT',
