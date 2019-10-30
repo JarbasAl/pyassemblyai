@@ -1,5 +1,12 @@
 # PyAssemblyAI
 
+I did not notice an official sdk exists - https://github.com/AssemblyAI/assemblyai-python-sdk
+
+repo is now archived
+
+
+________________________________
+
 python api for [AssemblyAI](https://www.assemblyai.com/)
 
 # install
